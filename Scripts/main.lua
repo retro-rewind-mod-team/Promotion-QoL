@@ -1,6 +1,6 @@
 -- ============================================================
 --  Retro Rewind - Promotion-QoL
---  Version: 1.1
+--  Version: 1.2
 --
 --  Automatically gives flyers to all walkby NPCs outside
 --  the store, so you don't have to hand them out manually.
@@ -20,15 +20,7 @@
 --  are distributed automatically — no manual interaction needed.
 -- ============================================================
 
--- ============================================================
--- CONFIG
--- ============================================================
-local CONFIG = {
-    flyerDelay      = 14,   -- ingame minutes before giving flyer to new NPC
-    conversionRate  = nil,  -- nil = use native store popularity rate
-                            -- 0.0 to 1.0 = override (1.0 = all NPCs accept)
-    Debug           = false, -- true = log hook registrations and detailed errors
-}
+local CONFIG = require("config")
 
 -- ============================================================
 -- INTERNAL
@@ -105,7 +97,7 @@ end
 -- CORE: Give flyer to a single NPC using native game chance
 -- ============================================================
 local function giveFlyerToNpc(npc)
-    local chance = CONFIG.conversionRate or realChance
+    local chance = (CONFIG.conversionRate > 0) and (CONFIG.conversionRate / 100) or realChance
     if math.random() <= chance then
         npc["Walker Accept the flyer"]()
     else

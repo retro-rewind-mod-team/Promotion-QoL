@@ -1,0 +1,30 @@
+# ── Required Fields ───────────────────────────────────────────────────────────
+
+name: "Promotion QoL"
+author: "Xerduntis"
+version: "1.2"
+mod_type: lua
+
+# ── Optional Fields ───────────────────────────────────────────────────────────
+
+description: "Automatically gives flyers to all walkby NPCs when the store opens. New NPCs that spawn while the store is open receive their flyer after a short ingame delay."
+
+# Nexus Mods IDs — used for update checking.
+
+config:
+  - key: Debug
+    label: "Debug Mode"
+    type: bool
+    default: false
+
+  - key: flyerDelay
+    label: "Flyer Delay (minutes)"
+    description: "Ingame minutes to wait before giving a flyer to an NPC that spawns while the store is already open."
+    type: int
+    default: 14
+
+  - key: conversionRate
+    label: "Conversion Rate Override (%)"
+    description: "0 = use native store popularity rate. 1–100 = override (100 = all NPCs accept the flyer)."
+    type: int
+    default: 0
